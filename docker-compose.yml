@@ -31,12 +31,12 @@ services:
         image: mysql:8.0
         container_name: db-spa
         environment:
-            MYSQL_DATABASE: db-trello-spa
+            MYSQL_DATABASE: db-spa
             MYSQL_USER: user
             MYSQL_PASSWORD: password
             MYSQL_ROOT_PASSWORD: password
         ports:
-        - "3308:3308"
+        - "3308:3306"
         volumes:
         - ./docker/db/data:/var/lib/mysql
         - ./docker/db/sql:/docker-entrypoint-initdb.d
