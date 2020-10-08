@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Task;
+use App\Models\Task;
 use Illuminate\Http\Request;
 
 class TaskController extends Controller
@@ -35,8 +35,20 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $task = Task::create([
+            'title'       => $request->title,
+            'category_id' => $request->category_id,
+            'owner'       => $request->owner,
+            'worker'      => $request->worker
+        ]);
+
+        $data = [
+            'data' => $task,
+            'status' => (bool) $task,
+            'message' => $task ? 'Task Created!' : 'Error Creating Task',
+        ];
+
+        return response()->json($data);
 
     /**
      * Display the specified resource.
